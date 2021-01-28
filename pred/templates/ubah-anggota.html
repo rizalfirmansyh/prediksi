@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h3> Ubah: {{anggota.Nama_Asli}}</h3>
+				{% for message in messages %}
+					{% if message %}
+					<div class="alert alert-success">{{ message }}</div>
+					{% endif %}
+				{% endfor %}
+				<form action="{% url 'ubah_anggota' anggota.id %}" method="post">
+					{% csrf_token %}
+					{{ form.as_p}}
+
+					<button class="btn btn-primary">Simpan</button>
+					<a href="/anggota" class="btn btn-danger">Kembali</a>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
